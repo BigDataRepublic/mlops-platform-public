@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-rbac-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  policy.default: role:readonly
+  policy.csv: |
+    g, <you>@<your.domain>, role:admin
+  # Actual groups could be used here, but need a bit more configuration: https://argo-cd.readthedocs.io/en/stable/operator-manual/user-management/google/#openid-connect-plus-google-groups-using-dex
+  scopes: '[email]'
