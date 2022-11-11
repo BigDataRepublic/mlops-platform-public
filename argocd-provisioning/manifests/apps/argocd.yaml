@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: git@github.com:BigDataRepublic/mlops-platform-public.git
+    repoURL: git@github.com:<your.github.repo>.git
     targetRevision: main
     path: applications/argocd
   destination:

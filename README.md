@@ -65,7 +65,7 @@ We are using the [kubernetes external secrets operator](https://external-secrets
 A GCESM secret needs to be created called `argocd-private-key` that contains the configuration for argocd to read our private repository:
 
 ```json
-{"name":"mlops-platform-public","sshPrivateKey":"-----BEGIN OPENSSH PRIVATE KEY-----\nSECRET!! Should exist already, or a new one can be created and added to https://github.com/BigDataRepublic/mlops-platform-public/settings/keys\n-----END OPENSSH PRIVATE KEY-----","url":"git@github.com:BigDataRepublic/mlops-platform-public.git"}
+{"name":"mlops-platform-public","sshPrivateKey":"-----BEGIN OPENSSH PRIVATE KEY-----\nSECRET!! Should exist already, or a new one can be created and added to https://github.com/<your.github.repo>/settings/keys\n-----END OPENSSH PRIVATE KEY-----","url":"git@github.com:<your.github.repo>.git"}
 ```
 
 Besides that, annoyingly it is [not possible](https://issuetracker.google.com/issues/35907249/resources) to create Oauth credentials in an automated way currently.
@@ -83,7 +83,7 @@ Make sure to create an A record pointing to your chosen domain (`mlops.<your.dom
 ## How to create a new application on the platform?
 
 A new application can be easily added to our MLOps platform. The actual code for the application (and its configuration)
-itself lives in [another repository](https://github.com/BigDataRepublic/mlops-platform-public-apps).
+itself lives in [another repository](https://github.com/<your.github.repo>).
 
 A few things have to be configured on the platform side to enable our end-users to use a new applications
 1. If necessary, create a `virtual-service.yaml` file in your application's folder. This virtual service works as a load-balancer and configures `istio` to properly handle network traffic.

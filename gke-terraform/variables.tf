@@ -52,7 +52,7 @@ variable "ip_range_services_name" {
 
 variable "bastion_members" {
   type        = list(string)
-  description = "List of users, groups, SAs who need access to the bastion host"
+  description = "List of users, groups, SAs who need access to the bastion host, admins of the project get access automatically"
   default     = []
 }
 
