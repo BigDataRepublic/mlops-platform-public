@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: argocd-cm
+    app.kubernetes.io/part-of: argocd
+data:
+  url: https://argocd.mlops.<your.domain>
+  dex.config: |
+    connectors:
+    - config:
+        issuer: https://accounts.google.com
+        clientID: $argocd-sso-client:client_id
+        clientSecret: $argocd-sso-client:client_secret
+      type: oidc
+      id: google
+      name: Google
+      scopes:
+      - profile
+      - email
+      - groups

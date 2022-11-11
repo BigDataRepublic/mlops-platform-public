@@ -1,0 +1,24 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: argocd-service
+  namespace: argocd
+spec:
+  hosts:
+    - "argocd.mlops.<your.domain>"
+  gateways:
+    - istio-ingress/iap-gateway
+  http:
+    - route:
+        - destination:
+            host: argocd-server.argocd.svc.cluster.local
+            port:
+              number: 80
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: argocd-destination
+  namespace: argocd
+spec:
+  host: argocd-server.argocd.svc.cluster.local
