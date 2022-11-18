@@ -74,3 +74,8 @@ output "annotate_k8s_secrets_sa_command" {
   description = "Command to execute to give the k8s service account access to the gcp secrets"
   value       = "kubectl annotate serviceaccount k8s-external-secrets --namespace eso iam.gke.io/gcp-service-account=${google_service_account.gke_workload_secrets.email}"
 }
+
+output "public_ip_address" {
+  description = "The public up to be configured in your own DNS management tool"
+  value       = google_compute_global_address.load_balancer_ip.address
+}

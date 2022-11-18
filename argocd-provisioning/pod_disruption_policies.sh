@@ -1,4 +1,4 @@
-# Some manual
+# To allow better downscaling, override these poddisruptionbudgets, no guarantees!
 kubectl create poddisruptionbudget fluentbit-pdb --namespace=kube-system --selector k8s-app=fluentbit-gke --max-unavailable 1
 kubectl create poddisruptionbudget gke-metadata-pdb --namespace=kube-system --selector k8s-app=gke-metadata-server --max-unavailable 1
 kubectl create poddisruptionbudget gke-metrics-pdb --namespace=kube-system --selector k8s-app=gke-metrics-agent --max-unavailable 1

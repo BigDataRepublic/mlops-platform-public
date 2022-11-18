@@ -52,6 +52,8 @@ HTTPS_PROXY=localhost:8888 kubectl get pods --all-namespaces
 
 ### Provisioning the Argo CD framework with Identity Aware Proxy
 The [argocd-provisioning](argocd-provisioning) project will use the tunnel started above to deploy argocd on the cluster.
+
+Do note that in order to be deployed successfully, it is assumed that you already executed the manual steps described below. If you did not, do that first!
 ```shell
 # Provision argocd from its own folder
 ./create_resources.sh
@@ -83,7 +85,7 @@ Make sure to create an A record pointing to your chosen domain (`mlops.<your.dom
 ## How to create a new application on the platform?
 
 A new application can be easily added to our MLOps platform. The actual code for the application (and its configuration)
-itself lives in [another repository](https://github.com/<your.github.repo>).
+itself lives in [this or another repository](https://github.com/<your.github.repo>).
 
 A few things have to be configured on the platform side to enable our end-users to use a new applications
 1. If necessary, create a `virtual-service.yaml` file in your application's folder. This virtual service works as a load-balancer and configures `istio` to properly handle network traffic.
