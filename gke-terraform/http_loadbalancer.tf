@@ -4,8 +4,8 @@ resource "google_compute_managed_ssl_certificate" "mlops" {
 
   managed {
     domains = [
-      "mlops.<your.domain>",
-      "argocd.mlops.<your.domain>",
+      "mlops.${var.domain_name}",
+      "argocd.mlops.${var.domain_name}",
     ]
   }
 }

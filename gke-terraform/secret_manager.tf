@@ -4,7 +4,7 @@ resource "google_service_account" "gke_workload_secrets" {
 }
 
 resource "google_project_iam_binding" "mlops-platform-public" {
-  project = var.project_id
+  project = data.google_project.default.name
   role    = "roles/secretmanager.secretAccessor"
 
   members = [
@@ -17,7 +17,7 @@ resource "google_service_account_iam_binding" "gke_workload_binding" {
   role               = "roles/iam.workloadIdentityUser"
 
   members = [
-    "serviceAccount:${var.project_id}.svc.id.goog[${var.k8s_secrets_sa}]",
+    "serviceAccount:${data.google_project.default.name}.svc.id.goog[${var.k8s_secrets_sa}]",
   ]
 }
 

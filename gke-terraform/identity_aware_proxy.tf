@@ -1,6 +1,6 @@
 ## Although the brand needs to be created once, it cannot be deleted so recreation fails :/
 #resource "google_iap_brand" "project_brand" {
-#  support_email     = "<you>@<your.domain>"
+#  support_email     = var.admin_user
 #  application_title = "Cloud IAP protected Application"
 #}
 
@@ -16,6 +16,6 @@ resource "google_iap_client" "mlops" {
 resource "google_iap_web_iam_binding" "iap_access" {
   role = "roles/iap.httpsResourceAccessor"
   members = [
-    "domain:<your.domain>",
+    "domain:${var.domain_name}",
   ]
 }

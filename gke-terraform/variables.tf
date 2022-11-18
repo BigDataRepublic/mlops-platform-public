@@ -1,7 +1,16 @@
 variable "project_id" {
   type        = string
-  default     = "mlops-platform-public"
   description = "The GCP project to deploy all components in"
+}
+
+variable "domain_name" {
+  type        = string
+  description = "Domain name that you manage, later on you need to configure the correct DNS records there"
+}
+
+variable "admin_user" {
+  type        = string
+  description = "Admin user that needs to be configured in things like IAP Brand"
 }
 
 variable "region" {
