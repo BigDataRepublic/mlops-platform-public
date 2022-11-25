@@ -3,7 +3,8 @@ resource "google_service_account" "gke_workload_secrets" {
   display_name = "SA for k8s workloads to access external secrets"
 }
 
-resource "google_project_iam_binding" "mlops-platform-public" {
+# Allows the service account to read from secret manager
+resource "google_project_iam_binding" "secret_accessor" {
   project = data.google_project.default.name
   role    = "roles/secretmanager.secretAccessor"
 
@@ -12,6 +13,7 @@ resource "google_project_iam_binding" "mlops-platform-public" {
   ]
 }
 
+# Attaches the service account as workload identity to the one usable by Kubernetes
 resource "google_service_account_iam_binding" "gke_workload_binding" {
   service_account_id = google_service_account.gke_workload_secrets.name
   role               = "roles/iam.workloadIdentityUser"
@@ -21,6 +23,7 @@ resource "google_service_account_iam_binding" "gke_workload_binding" {
   ]
 }
 
+# Save the IAP credentials as managed secret so that it can be used from Kubernetes
 resource "google_secret_manager_secret" "iap_oauth_credentials" {
   secret_id = "iap-oauth-credentials"
 
